@@ -58,11 +58,11 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         ventanaInventario.setLayout(ventanaInventarioLayout);
         ventanaInventarioLayout.setHorizontalGroup(
             ventanaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
         );
         ventanaInventarioLayout.setVerticalGroup(
             ventanaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
+            .addGap(0, 324, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sonaypet/imagenes/Menu (2).png"))); // NOI18N
@@ -160,7 +160,7 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        Clientes clientes = new Clientes();
+        ClientesInventario clientes = new ClientesInventario();
         cargarFormulario ((JPanel)clientes.getContentPane(),"..:: CLIENTES ::..");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 

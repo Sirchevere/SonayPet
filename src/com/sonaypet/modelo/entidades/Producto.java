@@ -14,17 +14,16 @@ public class Producto {
     String nom;
     double precio;
     int stock;
-    String estado;
+
 
     public Producto() {
     }
 
-    public Producto(int id, String nom, double precio, int stock, String estado) {
+    public Producto(int id, String nom, double precio, int stock) {
         this.id = id;
         this.nom = nom;
         this.precio = precio;
         this.stock = stock;
-        this.estado = estado;
     }
 
     public int getId() {
@@ -59,13 +58,6 @@ public class Producto {
         this.stock = stock;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
     
 }

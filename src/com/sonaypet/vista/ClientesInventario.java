@@ -1,35 +1,34 @@
 
 package com.sonaypet.vista;
 
-import com.sonaypet.modelo.dao.ClienteDAO;
-import com.sonaypet.modelo.entidades.Cliente;
+import com.sonaypet.modelo.dao.ClienteInventarioDAO;
+import com.sonaypet.modelo.entidades.ClienteInventario;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Clientes extends javax.swing.JInternalFrame {
+public class ClientesInventario extends javax.swing.JInternalFrame {
 
-    ClienteDAO dao = new ClienteDAO();
-    Cliente cl = new Cliente();
+    ClienteInventarioDAO dao = new ClienteInventarioDAO();
+    ClienteInventario cl = new ClienteInventario();
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
     
-    public Clientes() {
+    public ClientesInventario() {
         initComponents();
         listar();
     }
     
     void listar(){
-        List<Cliente> lista = dao.listar();
+        List<ClienteInventario> lista = dao.listar();
         modelo = (DefaultTableModel)tbl1.getModel();
-        Object[]ob = new Object[5];
+        Object[]ob = new Object[4];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
             ob[1] = lista.get(i).getDni();
             ob[2] = lista.get(i).getNom();
             ob[3] = lista.get(i).getDirec();
-            ob[4] = lista.get(i).getEstado();
             modelo.addRow(ob);
         }
         
@@ -46,11 +45,9 @@ public class Clientes extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtDni = new javax.swing.JTextField();
         txtNom = new javax.swing.JTextField();
         txtDirec = new javax.swing.JTextField();
-        cbxEstado = new javax.swing.JComboBox<>();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -83,15 +80,11 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         jLabel3.setText("DIRECCION:");
 
-        jLabel4.setText("ESTADO:");
-
         txtDirec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirecActionPerformed(evt);
             }
         });
-
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "1", "0" }));
 
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,13 +130,9 @@ public class Clientes extends javax.swing.JInternalFrame {
                         .addGap(103, 103, 103)
                         .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDirec, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(cbxEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,11 +160,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnNuevo)))
+                .addComponent(btnNuevo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -186,7 +171,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "NOMBRES", "DIRECCION", "ESTADO"
+                "ID", "DNI", "NOMBRES", "DIRECCION"
             }
         ));
         tbl1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,11 +255,9 @@ public class Clientes extends javax.swing.JInternalFrame {
             String dni = tbl1.getValueAt(fila, 1).toString();
             String nom = tbl1.getValueAt(fila, 2).toString();
             String direc = tbl1.getValueAt(fila, 3).toString();
-            String estado = tbl1.getValueAt(fila, 4).toString();
             txtDni.setText(dni);
             txtNom.setText(nom);
             txtDirec.setText(direc);
-            cbxEstado.setSelectedItem(estado);
             
         }
     }//GEN-LAST:event_tbl1MouseClicked
@@ -283,12 +266,10 @@ public class Clientes extends javax.swing.JInternalFrame {
         String dni = txtDni.getText();
         String nom = txtNom.getText();
         String direc = txtDirec.getText();
-        String estado = cbxEstado.getSelectedItem().toString();
-        Object[] ob = new Object[4];
+        Object[] ob = new Object[3];
         ob[0] = dni;
         ob[1] = nom;
         ob[2] = direc;
-        ob[3] = estado;
         dao.agregar(ob);
     }
     
@@ -301,13 +282,11 @@ public class Clientes extends javax.swing.JInternalFrame {
         String dni = txtDni.getText();
         String nom = txtNom.getText();
         String direc = txtDirec.getText();
-        String estado = cbxEstado.getSelectedItem().toString(); 
         Object[] obj = new Object[5];
         obj[0]=dni;
         obj[1]=nom;
         obj[2]=direc;
-        obj[3]=estado;
-        obj[4]=id;
+        obj[3]=id;
         dao.actualizar(obj);
         }
     }
@@ -329,7 +308,6 @@ public class Clientes extends javax.swing.JInternalFrame {
         txtNom.setText("");
         txtDirec.setText("");
         txtDni.setText("");
-        cbxEstado.setSelectedItem(0);
         txtDni.requestFocus();
         
     }
@@ -347,11 +325,9 @@ public class Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

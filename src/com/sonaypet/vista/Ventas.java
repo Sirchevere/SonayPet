@@ -1,10 +1,10 @@
 
 package com.sonaypet.vista;
 
-import com.sonaypet.modelo.dao.ClienteDAO;
+import com.sonaypet.modelo.dao.ClienteInventarioDAO;
 import com.sonaypet.modelo.dao.ProductoDAO;
 import com.sonaypet.modelo.dao.VentasDAO;
-import com.sonaypet.modelo.entidades.Cliente;
+import com.sonaypet.modelo.entidades.ClienteInventario;
 import com.sonaypet.modelo.entidades.DetalleVentas;
 import com.sonaypet.modelo.entidades.Producto;
 import com.sonaypet.modelo.entidades.Venta;
@@ -23,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventas extends javax.swing.JInternalFrame {
     VentasDAO vdao = new VentasDAO();
-    ClienteDAO cdao = new ClienteDAO();
+    ClienteInventarioDAO cdao = new ClienteInventarioDAO();
     ProductoDAO pdao = new ProductoDAO();
     Producto p = new Producto();
     Venta v = new Venta();
     DetalleVentas dv = new DetalleVentas();
-    Cliente cliente = new Cliente();
+    ClienteInventario cliente = new ClienteInventario();
     
     DefaultTableModel modelo = new DefaultTableModel();
     int idp;
@@ -482,14 +482,12 @@ public class Ventas extends javax.swing.JInternalFrame {
         String serie = txtSerie.getText();
         String fecha = txtFecha.getText();
         double monto = tpagar;
-        String estado = "1";
         
         v.setIdCliente(idc);
         v.setIdVendedor(idv);
         v.setSerie(serie);
         v.setFecha(fecha);
         v.setMonto(monto);
-        v.setEstado(estado);
         vdao.guardarVentas(v);
     
     }

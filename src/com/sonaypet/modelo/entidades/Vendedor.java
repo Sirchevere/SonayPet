@@ -8,7 +8,6 @@ public class Vendedor {
     String tel;
     String usuario;
     String dni;
-    String estado;
 
     public Vendedor() {
     }
@@ -19,7 +18,6 @@ public class Vendedor {
         this.tel = tel;
         this.usuario = usuario;
         this.dni = dni;
-        this.estado = estado;
     }
 
     public int getId() {
@@ -62,13 +60,6 @@ public class Vendedor {
         this.dni = dni;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
 
 }

@@ -9,19 +9,17 @@ public class Venta {
     String serie;
     String fecha;
     double monto;
-    String estado;
 
     public Venta() {
     }
 
-    public Venta(int id, int idCliente, int idVendedor, String serie, String fecha, double monto, String estado) {
+    public Venta(int id, int idCliente, int idVendedor, String serie, String fecha, double monto) {
         this.id = id;
         this.idCliente = idCliente;
         this.idVendedor = idVendedor;
         this.serie = serie;
         this.fecha = fecha;
         this.monto = monto;
-        this.estado = estado;
     }
 
     public int getId() {
@@ -72,12 +70,5 @@ public class Venta {
         this.monto = monto;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
 }

@@ -9,22 +9,20 @@ package com.sonaypet.modelo.entidades;
  *
  * @author cesar
  */
-public class Cliente {
+public class ClienteInventario {
     int id;
     String dni;
     String nom;
     String direc;
-    String estado;
 
-    public Cliente() {
+    public ClienteInventario() {
     }
 
-    public Cliente(int id, String dni, String nom, String direc, String estado) {
+    public ClienteInventario(int id, String dni, String nom, String direc) {
         this.id = id;
         this.dni = dni;
         this.nom = nom;
         this.direc = direc;
-        this.estado = estado;
     }
 
     public int getId() {
@@ -59,13 +57,6 @@ public class Cliente {
         this.direc = direc;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
     
 }

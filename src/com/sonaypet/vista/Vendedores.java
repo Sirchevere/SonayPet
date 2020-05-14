@@ -25,14 +25,13 @@ public class Vendedores extends javax.swing.JInternalFrame {
     void listar(){
         List<Vendedor> lista = dao.listar();
         modelo = (DefaultTableModel)tbl3.getModel();
-        Object[]ob = new Object[6];
+        Object[]ob = new Object[5];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
             ob[1] = lista.get(i).getNom();
             ob[2] = lista.get(i).getTel();
             ob[3] = lista.get(i).getUsuario();
             ob[4] = lista.get(i).getDni();
-            ob[5] = lista.get(i).getEstado();
             modelo.addRow(ob);
         }
         
@@ -51,12 +50,10 @@ public class Vendedores extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JTextField();
-        cbxEstado = new javax.swing.JComboBox<>();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -90,15 +87,11 @@ public class Vendedores extends javax.swing.JInternalFrame {
 
         jLabel4.setText("CONTRASEÑA:");
 
-        jLabel5.setText("ESTADO:");
-
         txtTel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelActionPerformed(evt);
             }
         });
-
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "1", "0" }));
 
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,22 +131,20 @@ public class Vendedores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel4))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNom)
+                    .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(txtTel)
                     .addComponent(txtUser)
-                    .addComponent(txtPass)
-                    .addComponent(cbxEstado, 0, 170, Short.MAX_VALUE))
+                    .addComponent(txtPass))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnActualizar)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,10 +169,7 @@ public class Vendedores extends javax.swing.JInternalFrame {
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo))
+                .addComponent(btnNuevo)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -192,7 +180,7 @@ public class Vendedores extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "TELEFONO", "USUARIO", "CONTRASEÑA", "ESTADO"
+                "ID", "NOMBRE", "TELEFONO", "USUARIO", "CONTRASEÑA"
             }
         ));
         tbl3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -283,12 +271,10 @@ public class Vendedores extends javax.swing.JInternalFrame {
             String tel = tbl3.getValueAt(fila, 2).toString();
             String usuario = tbl3.getValueAt(fila, 3).toString();
             String dni = tbl3.getValueAt(fila, 4).toString();
-            String estado = tbl3.getValueAt(fila, 5).toString();
             txtNom.setText(nom);
             txtTel.setText(tel);
             txtUser.setText(usuario);
             txtPass.setText(dni);
-            cbxEstado.setSelectedItem(estado);
             
         }
     }//GEN-LAST:event_tbl3MouseClicked
@@ -299,13 +285,11 @@ public class Vendedores extends javax.swing.JInternalFrame {
         String tel = txtTel.getText();
         String usuario = txtUser.getText();
         String dni = txtPass.getText();
-        String estado = cbxEstado.getSelectedItem().toString();
-        Object[] ob = new Object[5];
+        Object[] ob = new Object[4];
         ob[0] = nom;
         ob[1] = tel;
         ob[2] = usuario;
         ob[3] = dni;
-        ob[4] = estado;
         dao.agregar(ob);
     }
     
@@ -319,14 +303,12 @@ public class Vendedores extends javax.swing.JInternalFrame {
         String tel = txtTel.getText();
         String usuario = txtUser.getText();
         String dni = txtPass.getText();
-        String estado = cbxEstado.getSelectedItem().toString(); 
-        Object[] obj = new Object[6];
+        Object[] obj = new Object[5];
         obj[0]=nom;
         obj[1]=tel;
         obj[2]=usuario;
         obj[3]=dni;
-        obj[4]=estado;
-        obj[5]=id;
+        obj[4]=id;
         dao.actualizar(obj);
         }
     }
@@ -350,7 +332,6 @@ public class Vendedores extends javax.swing.JInternalFrame {
         txtTel.setText("");
         txtUser.setText("");
         txtPass.setText("");
-        cbxEstado.setSelectedItem(0);
         txtNom.requestFocus();
         
     }
@@ -368,12 +349,10 @@ public class Vendedores extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

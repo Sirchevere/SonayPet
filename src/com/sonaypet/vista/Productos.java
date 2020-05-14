@@ -22,13 +22,12 @@ public class Productos extends javax.swing.JInternalFrame {
     void listar(){
         List<Producto> lista = dao.listar();
         modelo = (DefaultTableModel)tbl2.getModel();
-        Object[]ob = new Object[5];
+        Object[]ob = new Object[4];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
             ob[1] = lista.get(i).getNom();
             ob[2] = lista.get(i).getPrecio();
             ob[3] = lista.get(i).getStock();
-            ob[4] = lista.get(i).getEstado();
             modelo.addRow(ob);
         }
         
@@ -44,11 +43,9 @@ public class Productos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtPre = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
-        cbxEstado = new javax.swing.JComboBox<>();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -67,15 +64,11 @@ public class Productos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("STOCK:");
 
-        jLabel4.setText("ESTADO:");
-
         txtStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStockActionPerformed(evt);
             }
         });
-
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "1", "0" }));
 
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,14 +107,12 @@ public class Productos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNom)
+                    .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(txtPre)
-                    .addComponent(txtStock)
-                    .addComponent(cbxEstado, 0, 200, Short.MAX_VALUE))
+                    .addComponent(txtStock))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,10 +140,7 @@ public class Productos extends javax.swing.JInternalFrame {
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo))
+                .addComponent(btnNuevo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,7 +151,7 @@ public class Productos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "PRECIO", "STOCK", "ESTADO"
+                "ID", "NOMBRE", "PRECIO", "STOCK"
             }
         ));
         tbl2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -247,11 +235,9 @@ public class Productos extends javax.swing.JInternalFrame {
             String nom = tbl2.getValueAt(fila, 1).toString();
             String precio = tbl2.getValueAt(fila, 2).toString();
             String stock = tbl2.getValueAt(fila, 3).toString();
-            String estado = tbl2.getValueAt(fila, 4).toString();
             txtNom.setText(nom);
             txtPre.setText(precio);
             txtStock.setText(stock);
-            cbxEstado.setSelectedItem(estado);
             
         }
     }//GEN-LAST:event_tbl2MouseClicked
@@ -260,12 +246,10 @@ public class Productos extends javax.swing.JInternalFrame {
         String nom = txtNom.getText();
         String precio = txtPre.getText();
         String stock = txtStock.getText();
-        String estado = cbxEstado.getSelectedItem().toString();
-        Object[] ob = new Object[4];
+        Object[] ob = new Object[3];
         ob[0] = nom;
         ob[1] = precio;
         ob[2] = stock;
-        ob[3] = estado;
         dao.agregar(ob);
     }
     
@@ -278,13 +262,11 @@ public class Productos extends javax.swing.JInternalFrame {
         String nom = txtNom.getText();
         String precio = txtPre.getText();
         String stock = txtStock.getText();
-        String estado = cbxEstado.getSelectedItem().toString(); 
-        Object[] obj = new Object[5];
+        Object[] obj = new Object[4];
         obj[0]=nom;
         obj[1]=precio;
         obj[2]=stock;
-        obj[3]=estado;
-        obj[4]=id;
+        obj[3]=id;
         dao.actualizar(obj);
         }
     }
@@ -306,7 +288,6 @@ public class Productos extends javax.swing.JInternalFrame {
         txtNom.setText("");
         txtPre.setText("");
         txtStock.setText("");
-        cbxEstado.setSelectedItem(0);
         txtNom.requestFocus();
         
     }
@@ -324,11 +305,9 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
