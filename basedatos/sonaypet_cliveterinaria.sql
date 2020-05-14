@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2020 a las 04:30:29
+-- Tiempo de generación: 14-05-2020 a las 22:38:08
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -32,8 +32,7 @@ CREATE TABLE `cliente` (
   `idCliente` int(11) NOT NULL,
   `dni` varchar(8) NOT NULL,
   `nombres` varchar(255) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `estado` varchar(1) NOT NULL
+  `direccion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -60,29 +59,8 @@ CREATE TABLE `producto` (
   `idProducto` int(11) NOT NULL,
   `nombre` varchar(244) NOT NULL,
   `precio` double NOT NULL,
-  `stock` int(11) NOT NULL,
-  `estado` varchar(1) NOT NULL
+  `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tab_animal`
---
-
-CREATE TABLE `tab_animal` (
-  `ID_ANIMAL` int(11) NOT NULL,
-  `ANI_NOMBRE` varchar(50) NOT NULL,
-  `ANI_DESCRIPCION` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tab_animal`
---
-
-INSERT INTO `tab_animal` (`ID_ANIMAL`, `ANI_NOMBRE`, `ANI_DESCRIPCION`) VALUES
-(1, 'PERRO', 'SAD'),
-(2, 'Otro', 'Otro');
 
 -- --------------------------------------------------------
 
@@ -133,33 +111,14 @@ INSERT INTO `tab_cliente` (`ID_CLIENTE`, `CLI_NOMBRES`, `CLI_APELLIDOS`, `CLI_FE
 CREATE TABLE `tab_mascota` (
   `ID_MASCOTA` int(11) NOT NULL,
   `ID_CLIENTE` int(11) DEFAULT NULL,
-  `ID_ANIMAL` int(11) DEFAULT NULL,
-  `ID_RAZA` int(11) DEFAULT NULL,
   `MASC_NOMBRE` varchar(50) NOT NULL,
   `MASC_FECHANAC` date NOT NULL,
+  `MASC_ESPECIE` varchar(20) NOT NULL,
+  `MASC_RAZA` varchar(20) NOT NULL,
   `MASC_GENERO` varchar(20) NOT NULL,
   `MASC_COLOR` varchar(20) DEFAULT NULL,
   `MASC_PELAJE` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tab_raza`
---
-
-CREATE TABLE `tab_raza` (
-  `ID_RAZA` int(11) NOT NULL,
-  `RAZA_NOMBRE` varchar(100) NOT NULL,
-  `RAZA_DESCRIPCION` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tab_raza`
---
-
-INSERT INTO `tab_raza` (`ID_RAZA`, `RAZA_NOMBRE`, `RAZA_DESCRIPCION`) VALUES
-(1, 'ASD', 'ASD');
 
 -- --------------------------------------------------------
 
@@ -172,16 +131,16 @@ CREATE TABLE `vendedor` (
   `nombre` varchar(255) NOT NULL,
   `telefono` varchar(10) NOT NULL,
   `usuario` varchar(8) NOT NULL,
-  `dni` varchar(8) NOT NULL,
-  `estado` varchar(1) NOT NULL
+  `dni` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `vendedor`
 --
 
-INSERT INTO `vendedor` (`idVendedor`, `nombre`, `telefono`, `usuario`, `dni`, `estado`) VALUES
-(1, 'Empleado 0001', '6222230071', 'emp01', '123', '1');
+INSERT INTO `vendedor` (`idVendedor`, `nombre`, `telefono`, `usuario`, `dni`) VALUES
+(1, 'Empleado 0001', '6222230071', 'emp01', 0x313233),
+(3, 'cesar', '6221578961', 'cesar', 0xaa31bc9280d704c8567eed9243c28469);
 
 -- --------------------------------------------------------
 
@@ -195,8 +154,7 @@ CREATE TABLE `ventas` (
   `idVendedor` int(11) NOT NULL,
   `numeroSerie` varchar(12) NOT NULL,
   `fechaVenta` date NOT NULL,
-  `monto` double NOT NULL,
-  `estado` varchar(1) NOT NULL
+  `monto` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -224,12 +182,6 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`);
 
 --
--- Indices de la tabla `tab_animal`
---
-ALTER TABLE `tab_animal`
-  ADD PRIMARY KEY (`ID_ANIMAL`);
-
---
 -- Indices de la tabla `tab_citas`
 --
 ALTER TABLE `tab_citas`
@@ -248,15 +200,7 @@ ALTER TABLE `tab_cliente`
 --
 ALTER TABLE `tab_mascota`
   ADD PRIMARY KEY (`ID_MASCOTA`),
-  ADD KEY `FK_RELATIONSHIP_1` (`ID_ANIMAL`),
-  ADD KEY `FK_RELATIONSHIP_2` (`ID_RAZA`),
   ADD KEY `FK_RELATIONSHIP_3` (`ID_CLIENTE`);
-
---
--- Indices de la tabla `tab_raza`
---
-ALTER TABLE `tab_raza`
-  ADD PRIMARY KEY (`ID_RAZA`);
 
 --
 -- Indices de la tabla `vendedor`
@@ -295,12 +239,6 @@ ALTER TABLE `producto`
   MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `tab_animal`
---
-ALTER TABLE `tab_animal`
-  MODIFY `ID_ANIMAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `tab_citas`
 --
 ALTER TABLE `tab_citas`
@@ -319,16 +257,10 @@ ALTER TABLE `tab_mascota`
   MODIFY `ID_MASCOTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `tab_raza`
---
-ALTER TABLE `tab_raza`
-  MODIFY `ID_RAZA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
@@ -358,8 +290,6 @@ ALTER TABLE `tab_citas`
 -- Filtros para la tabla `tab_mascota`
 --
 ALTER TABLE `tab_mascota`
-  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_ANIMAL`) REFERENCES `tab_animal` (`ID_ANIMAL`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`ID_RAZA`) REFERENCES `tab_raza` (`ID_RAZA`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `tab_cliente` (`ID_CLIENTE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
