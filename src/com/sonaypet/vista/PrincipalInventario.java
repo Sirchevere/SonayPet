@@ -43,7 +43,6 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ventanaInventario = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -53,17 +52,6 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-
-        javax.swing.GroupLayout ventanaInventarioLayout = new javax.swing.GroupLayout(ventanaInventario);
-        ventanaInventario.setLayout(ventanaInventarioLayout);
-        ventanaInventarioLayout.setHorizontalGroup(
-            ventanaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
-        ventanaInventarioLayout.setVerticalGroup(
-            ventanaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
-        );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sonaypet/imagenes/Menu (2).png"))); // NOI18N
         jMenu1.setText("Menu");
@@ -131,11 +119,11 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ventanaInventario)
+            .addGap(0, 585, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ventanaInventario, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         pack();
@@ -184,6 +172,5 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JDesktopPane ventanaInventario;
     // End of variables declaration//GEN-END:variables
 }

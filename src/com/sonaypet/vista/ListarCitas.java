@@ -9,12 +9,12 @@ package com.sonaypet.vista;
  *
  * @author cesar
  */
-public class Citas extends javax.swing.JInternalFrame {
+public class ListarCitas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Citas
      */
-    public Citas() {
+    public ListarCitas() {
         initComponents();
     }
 

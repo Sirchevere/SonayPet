@@ -75,7 +75,7 @@ public class ClienteInventarioDAO implements CRUD{
     public int agregar(Object[] o) {
         
        int r = 0;
-       String sql = "INSERT INTO cliente(dni,nombres,direccion,)values(?,?,?)";
+       String sql = "INSERT INTO cliente(dni,nombres,direccion)values(?,?,?)";
        
        try{
            con = cn.Conectar();
@@ -127,5 +127,10 @@ public class ClienteInventarioDAO implements CRUD{
         }catch(Exception e){
         
         }
+    }
+
+    @Override
+    public List custom(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

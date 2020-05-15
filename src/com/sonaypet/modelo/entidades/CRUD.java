@@ -16,4 +16,5 @@ public interface CRUD {
     public int agregar(Object[] o);
     public int actualizar(Object[] o);
     public void eliminar(int id);
+    public List custom(int id);
 }

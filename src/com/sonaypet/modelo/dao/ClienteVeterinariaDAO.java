@@ -152,6 +152,10 @@ public class ClienteVeterinariaDAO implements CRUD {
             ps.setObject(3, o[2]);
             ps.setObject(4, o[3]);
             ps.setObject(5, o[4]);
+            ps.setObject(6, o[5]);
+            ps.setObject(7, o[6]);
+            ps.setObject(8, o[7]);
+            ps.setObject(9, o[8]);
             r = ps.executeUpdate();
         
         }catch(Exception e){
@@ -174,6 +178,11 @@ public class ClienteVeterinariaDAO implements CRUD {
         }catch(Exception e){
         
         }
+    }
+
+    @Override
+    public List custom(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
