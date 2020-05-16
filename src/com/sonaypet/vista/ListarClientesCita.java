@@ -42,8 +42,7 @@ public class ListarClientesCita extends javax.swing.JInternalFrame {
         for(int i = 0; i < lista.size(); i++){
            
             nombreM.add(lista.get(i).getNombre());
-             System.out.println(nombreM.get(i));
-             cbxMascota.addItem(nombreM.get(i));
+            cbxMascota.addItem(nombreM.get(i));
         }
         
         
