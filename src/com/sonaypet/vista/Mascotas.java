@@ -5,8 +5,15 @@ package com.sonaypet.vista;
 
 import com.sonaypet.modelo.dao.MascotaDAO;
 import com.sonaypet.modelo.entidades.AgregarMascota;
+import com.sonaypet.modelo.entidades.ClienteVeterinaria;
 import com.sonaypet.modelo.entidades.Mascota;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,15 +23,30 @@ public class Mascotas extends javax.swing.JInternalFrame {
     MascotaDAO dao = new MascotaDAO();
     Mascota masc = new Mascota();
     DefaultTableModel modelo = new DefaultTableModel();
+    ClienteVeterinaria cv = new ClienteVeterinaria();
     int id;
-    public static int idCliente;
+    int idCliente;
    
     public Mascotas() {
         initComponents();
-        txtIdCliente.setText(String.valueOf(id));
+        /*frmPrincipal fp = new frmPrincipal();
+        idCliente = fp.getIdPrincipal();
+        txtIdCliente.setText(String.valueOf(idCliente));*/
+        
+        int prueba = cv.getId();
+        System.out.println(id);
+        txtIdCliente.setText(String.valueOf(prueba));
+        System.out.println(idCliente);
+        System.out.println(cv.getId());
+        
         listar();
     }
-
+    
+    public Mascotas(int id){
+    initComponents();
+    txtIdCliente.setText(String.valueOf(id));
+    listar();
+    }
     public int getId() {
         return id;
     }
@@ -34,9 +56,9 @@ public class Mascotas extends javax.swing.JInternalFrame {
     }
     
     void listar(){
-        List<AgregarMascota> lista = dao.custom(idCliente);
+        List<AgregarMascota> lista = dao.custom(Integer.parseInt(txtIdCliente.getText()));
         modelo = (DefaultTableModel)tbl3.getModel();
-        Object[]ob = new Object[9];
+        Object[]ob = new Object[10];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
             ob[1] = lista.get(i).getCliNombre();
@@ -49,7 +71,7 @@ public class Mascotas extends javax.swing.JInternalFrame {
             ob[8] = lista.get(i).getColor();
             ob[9] = lista.get(i).getPelaje();
             modelo.addRow(ob);
-            System.out.println("Si jalo"+idCliente);   
+             
               
         }
         
@@ -359,23 +381,27 @@ public class Mascotas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
         
         }else{
-            id = Integer.parseInt(tbl3.getValueAt(fila, 0).toString());
-            String idCliente = tbl3.getValueAt(fila, 1).toString();
-            String nombre = tbl3.getValueAt(fila, 2).toString();
-            String fechaNac = tbl3.getValueAt(fila, 3).toString();
-            String especie = tbl3.getValueAt(fila, 4).toString();
-            String raza = tbl3.getValueAt(fila, 5).toString();
-            String genero = tbl3.getValueAt(fila, 6).toString();
-            String color = tbl3.getValueAt(fila, 7).toString();
-            String pelaje = tbl3.getValueAt(fila, 8).toString();
-            txtIdCliente.setText(idCliente);
-            txtNombre.setText(nombre);
-            FechaNac.setDateFormatString(fechaNac);
-            txtEspecie.setText(especie);
-            txtRaza.setText(raza);
-            cbxSexo.setSelectedItem(genero);
-            txtColor.setText(color);
-            txtPelaje.setText(pelaje);
+             try {
+                 id = Integer.parseInt(tbl3.getValueAt(fila, 0).toString());
+                 String nombre = tbl3.getValueAt(fila, 3).toString();
+                 String fechaNac = tbl3.getValueAt(fila, 4).toString();
+                 String especie = tbl3.getValueAt(fila, 5).toString();
+                 String raza = tbl3.getValueAt(fila, 6).toString();
+                 String genero = tbl3.getValueAt(fila, 7).toString();
+                 String color = tbl3.getValueAt(fila, 8).toString();
+                 String pelaje = tbl3.getValueAt(fila, 9).toString();
+                 txtNombre.setText(nombre);
+                 String fecha = fechaNac;
+                 Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                 FechaNac.setDate(date1);
+                 txtEspecie.setText(especie);
+                 txtRaza.setText(raza);
+                 cbxSexo.setSelectedItem(genero);
+                 txtColor.setText(color);
+                 txtPelaje.setText(pelaje);
+             } catch (ParseException ex) {
+                 Logger.getLogger(Mascotas.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
     
         }
@@ -389,7 +415,10 @@ public class Mascotas extends javax.swing.JInternalFrame {
     void agregar(){
         String idCliente = txtIdCliente.getText();
         String nombre = txtNombre.getText();
-        String fechaNac = FechaNac.getDateFormatString();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = FechaNac.getDate();
+        String strDate = dateFormat.format(date);
+        String fechaNac = strDate;
         String especie = txtEspecie.getText();
         String raza = txtRaza.getText();
         String genero = cbxSexo.getSelectedItem().toString();
@@ -417,7 +446,10 @@ public class Mascotas extends javax.swing.JInternalFrame {
         }else{
         String idCliente = txtIdCliente.getText();
         String nombre = txtNombre.getText();
-        String fechaNac = FechaNac.getDateFormatString();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = FechaNac.getDate();
+        String strDate = dateFormat.format(date);
+        String fechaNac = strDate;
         String especie = txtEspecie.getText();
         String raza = txtRaza.getText();
         String genero = cbxSexo.getSelectedItem().toString();
@@ -452,13 +484,13 @@ public class Mascotas extends javax.swing.JInternalFrame {
     
     void nuevo(){
         
-        txtIdCliente.setText("");
+        
         txtNombre.setText("");
         txtEspecie.setText("");
         txtRaza.setText("");
         txtColor.setText("");
         txtPelaje.setText("");
-        txtIdCliente.requestFocus();
+        txtNombre.requestFocus();
         
     }
     

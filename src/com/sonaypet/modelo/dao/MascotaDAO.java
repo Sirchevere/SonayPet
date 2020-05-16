@@ -163,5 +163,65 @@ public class MascotaDAO implements CRUD {
 
         }
     }
+    @Override
+    public List buscarTodosID(int id){
+     List<Mascota> lista = new ArrayList<>();
+        String sql = "SELECT * FROM `tab_mascota` WHERE ID_CLIENTE ="+id;
+
+        try {
+            con = cn.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Mascota m = new Mascota();
+                m.setId(rs.getInt(1));
+                m.setIdCliente(rs.getInt(2));
+                m.setNombre(rs.getString(3));
+                m.setFechaNac(rs.getString(4));
+                m.setEspecie(rs.getString(5));
+                m.setRaza(rs.getString(6));
+                m.setGenero(rs.getString(7));
+                m.setColor(rs.getString(8));
+                m.setPelaje(rs.getString(9));
+                lista.add(m);
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return lista;
+    }
+    
+    @Override
+    public Object listarID(int id) {
+        Mascota m = new Mascota();
+        String sql ="SELECT * FROM tab_mascota WHERE ID_MASCOTA=?";
+        
+        try{
+            con = cn.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                m.setId(rs.getInt(1));
+                m.setIdCliente(rs.getInt(2));
+                m.setNombre(rs.getString(3));
+                m.setFechaNac(rs.getString(4));
+                m.setEspecie(rs.getString(5));
+                m.setRaza(rs.getString(6));
+                m.setGenero(rs.getString(7));
+                m.setColor(rs.getString(8));
+                m.setPelaje(rs.getString(9));
+                
+            }
+            
+        }catch(Exception e){
+        
+        }
+        return m;
+    }
 
 }

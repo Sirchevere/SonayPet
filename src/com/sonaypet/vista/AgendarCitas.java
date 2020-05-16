@@ -1,34 +1,51 @@
 
 package com.sonaypet.vista;
 
-import com.sonaypet.modelo.dao.ClienteInventarioDAO;
-import com.sonaypet.modelo.entidades.ClienteInventario;
+
+import com.sonaypet.modelo.dao.CitaDAO;
+import com.sonaypet.modelo.entidades.AgendarCita;
+import com.sonaypet.modelo.entidades.Cita;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class AgendarCitas extends javax.swing.JInternalFrame {
-
-    ClienteInventarioDAO dao = new ClienteInventarioDAO();
-    ClienteInventario cl = new ClienteInventario();
+    AgendarCita agendarCita = new AgendarCita();
+    CitaDAO dao = new CitaDAO();
+    Cita cita = new Cita();
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
+    int idCliente;
     
     public AgendarCitas() {
         initComponents();
         listar();
     }
+    public AgendarCitas(int id,int idM){
+    initComponents();
+    idCliente = id;
+    listar();
+    }
     
     void listar(){
-        List<ClienteInventario> lista = dao.listar();
+        
+        List<AgendarCita> lista = dao.custom(idCliente);
         modelo = (DefaultTableModel)tbl1.getModel();
-        Object[]ob = new Object[4];
+        Object[]ob = new Object[6];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getNom();
-            ob[3] = lista.get(i).getDirec();
+            ob[1] = lista.get(i).getNombre();
+            ob[2] = lista.get(i).getApellido();
+            ob[3] = lista.get(i).getNombreM();
+            ob[4] = lista.get(i).getFecha();
+            ob[5] = lista.get(i).getHora();
             modelo.addRow(ob);
         }
         
@@ -44,14 +61,12 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtDni = new javax.swing.JTextField();
-        txtNom = new javax.swing.JTextField();
-        txtDirec = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        txtFechaCita = new com.toedter.calendar.JDateChooser();
+        txtHoraCita = new com.github.lgooddatepicker.components.TimePicker();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl1 = new javax.swing.JTable();
@@ -70,21 +85,13 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setBorder(null);
-        setTitle("Clientes");
+        setTitle("Agendar Cita");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("DNI:");
+        jLabel1.setText("Fecha Cita:");
 
-        jLabel2.setText("NOMBRES:");
-
-        jLabel3.setText("DIRECCION:");
-
-        txtDirec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDirecActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Hora Cita:");
 
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,45 +127,37 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(103, 103, 103)
-                        .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(txtHoraCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(81, 81, 81)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(btnAgregar))
+                    .addComponent(txtFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar))
+                    .addComponent(btnActualizar)
+                    .addComponent(txtHoraCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar))
+                .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNuevo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -171,7 +170,7 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "NOMBRES", "DIRECCION"
+                "ID", "NOMBRE", "APELLIDO", "MASCOTA", "FECHA", "HORA"
             }
         ));
         tbl1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,10 +215,6 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDirecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDirecActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregar();
         limpiarTabla();
@@ -251,25 +246,31 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
         
         }else{
+            try{
             id = Integer.parseInt(tbl1.getValueAt(fila, 0).toString());
-            String dni = tbl1.getValueAt(fila, 1).toString();
-            String nom = tbl1.getValueAt(fila, 2).toString();
-            String direc = tbl1.getValueAt(fila, 3).toString();
-            txtDni.setText(dni);
-            txtNom.setText(nom);
-            txtDirec.setText(direc);
+            String fechaCita = tbl1.getValueAt(fila, 3).toString();
+            String horaCita = tbl1.getValueAt(fila, 4).toString();
+            String fecha = fechaCita;
+            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);     
+            txtFechaCita.setDate(date1);
+            txtHoraCita.setText(horaCita);
+            }catch (ParseException ex) {
+                 Logger.getLogger(ClientesVeterinaria.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
         }
     }//GEN-LAST:event_tbl1MouseClicked
 
     void agregar(){
-        String dni = txtDni.getText();
-        String nom = txtNom.getText();
-        String direc = txtDirec.getText();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = txtFechaCita.getDate();
+        String strDate = dateFormat.format(date);
+        String fechaCita = strDate;
+        String horaCita = txtHoraCita.getText();
+       
         Object[] ob = new Object[3];
-        ob[0] = dni;
-        ob[1] = nom;
-        ob[2] = direc;
+        ob[3] = fechaCita;
+        ob[4] = horaCita;
         dao.agregar(ob);
     }
     
@@ -279,14 +280,17 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
         if(fila == -1){
         JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para actualizar sus datos");
         }else{
-        String dni = txtDni.getText();
-        String nom = txtNom.getText();
-        String direc = txtDirec.getText();
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = txtFechaCita.getDate();
+        String strDate = dateFormat.format(date);
+        String fechaCita = strDate;
+        String horaCita = txtHoraCita.getText();
+
         Object[] obj = new Object[5];
-        obj[0]=dni;
-        obj[1]=nom;
-        obj[2]=direc;
-        obj[3]=id;
+        
+        obj[3]=fechaCita;
+        obj[4]=horaCita;
+        obj[5]=id;
         dao.actualizar(obj);
         }
     }
@@ -305,10 +309,8 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
     }
     
     void nuevo(){
-        txtNom.setText("");
-        txtDirec.setText("");
-        txtDni.setText("");
-        txtDni.requestFocus();
+       
+        
         
     }
     
@@ -327,15 +329,13 @@ public class AgendarCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tbl1;
-    private javax.swing.JTextField txtDirec;
-    private javax.swing.JTextField txtDni;
-    private javax.swing.JTextField txtNom;
+    private com.toedter.calendar.JDateChooser txtFechaCita;
+    private com.github.lgooddatepicker.components.TimePicker txtHoraCita;
     // End of variables declaration//GEN-END:variables
 }

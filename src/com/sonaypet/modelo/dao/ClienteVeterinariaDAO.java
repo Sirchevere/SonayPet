@@ -56,7 +56,7 @@ public class ClienteVeterinariaDAO implements CRUD {
         return lista;
     }
     
-     public ClienteVeterinaria listarID(int id){
+        public ClienteVeterinaria listarID(int id){
         ClienteVeterinaria c = new ClienteVeterinaria();
         String sql ="SELECT * FROM tab_cliente WHERE ID_CLIENTE=?";
         
@@ -182,6 +182,11 @@ public class ClienteVeterinariaDAO implements CRUD {
 
     @Override
     public List custom(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List buscarTodosID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

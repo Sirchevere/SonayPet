@@ -29,6 +29,14 @@ public class ListarClientes extends javax.swing.JInternalFrame {
         initComponents();
         listar();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
         public void cargarFormulario (JPanel panel, String titulo){
        JInternalFrame frm = new JInternalFrame(titulo);
        frm.setContentPane (panel);
@@ -135,12 +143,10 @@ public class ListarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbl3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-        Mascotas mascotas = new Mascotas();
-               
+        Mascotas mascotas = new Mascotas(id);
+    
         cargarFormulario ((JPanel)mascotas.getContentPane(), "..:: Agendar Cita ::..");
-        mascotas.idCliente = id; 
-        mascotas.setId(id);
+        
         this.setVisible(false);
          
     }//GEN-LAST:event_jButton1ActionPerformed

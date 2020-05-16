@@ -8,7 +8,15 @@ import javax.swing.JPanel;
 
 
 public class frmPrincipal extends javax.swing.JFrame {
+int idPrincipal;
 
+    public int getIdPrincipal() {
+        return idPrincipal;
+    }
+
+    public void setIdPrincipal(int idPrincipal) {
+        this.idPrincipal = idPrincipal;
+    }
     
     public frmPrincipal() {
         initComponents();
@@ -49,7 +57,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -112,14 +119,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem4.setText("Ver Clientes");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem4);
-
         jMenuItem7.setText("Agregar Mascota");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,8 +147,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        AgendarCitas agendar = new AgendarCitas();
-        cargarFormulario ((JPanel)agendar.getContentPane(), "..:: Agendar Cita ::..");
+        ListarClientesCita listar = new ListarClientesCita();
+        cargarFormulario ((JPanel)listar.getContentPane(), "..:: Agendar Cita ::..");
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -171,11 +170,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         cargarFormulario ((JPanel)agregarCliente.getContentPane(), "..:: Agregar Cliente ::..");        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        ListarClientes listarClientes = new ListarClientes();
-        cargarFormulario ((JPanel)listarClientes.getContentPane(), "..:: Ver Clientes ::..");
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         ListarClientes listC = new ListarClientes();
         cargarFormulario ((JPanel)listC.getContentPane(), "..:: Agregar Mascota ::..");
@@ -196,7 +190,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
