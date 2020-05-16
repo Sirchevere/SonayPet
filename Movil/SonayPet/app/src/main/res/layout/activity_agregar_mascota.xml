@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registrarse">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Especie"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/edtRaza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Raza"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/edtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp" />
+
+
+
+            <EditText
+                android:id="@+id/edtFechaDeNac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Fecha de nacimiento"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:id="@+id/generoTxt"
+                android:layout_width="308dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="Sexo"
+                android:textAlignment="viewEnd" />
+
+            <Spinner
+                android:id="@+id/edtGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Sexo"
+                android:paddingLeft="5dp" />
+
+
+            <EditText
+                android:id="@+id/edtColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Color"
+                android:inputType="text"
+                android:paddingLeft="5dp" />
+
+
+            <EditText
+                android:id="@+id/edtPelaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Pelaje"
+                android:inputType="text"
+                android:paddingLeft="5dp" />
+
+
+
+
+
+
+
+            <Button
+                android:id="@+id/btnAgregarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="#1976d2"
+                android:text="Agregar mascota"
+                android:textColor="#FFF"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

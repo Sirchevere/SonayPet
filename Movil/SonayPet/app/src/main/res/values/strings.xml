@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SonayPet</string>
+    <string-array name="Generos">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
+</resources>
