@@ -114,7 +114,7 @@ public class CitaDAO implements CRUD {
     @Override
     public List custom(int id) {
         List<AgendarCita> lista = new ArrayList<>();
-        String sql = "SELECT tab_citas.CLIENTE_ID, tab_cliente.CLI_NOMBRES, \n"
+        String sql = "SELECT tab_citas.ID_CITAS, tab_cliente.CLI_NOMBRES, \n"
                 + "tab_cliente.CLI_APELLIDOS, \n"
                 + "tab_mascota.MASC_NOMBRE, \n"
                 + "tab_citas.CITA_FECHAHR, \n"
@@ -158,6 +158,44 @@ public class CitaDAO implements CRUD {
     @Override
     public List buscarTodosID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List custom2() {
+       List<AgendarCita> lista = new ArrayList<>();
+        String sql = "SELECT tab_citas.ID_CITAS, tab_cliente.CLI_NOMBRES, \n"
+                + "tab_cliente.CLI_APELLIDOS, \n"
+                + "tab_mascota.MASC_NOMBRE, \n"
+                + "tab_citas.CITA_FECHAHR, \n"
+                + "tab_citas.CITA_HORA\n"
+                + "FROM   sonaypet_cliveterinaria.tab_citas \n"
+                + "INNER JOIN tab_cliente \n"
+                + "        ON tab_cliente.ID_CLIENTE = tab_citas.CLIENTE_ID\n"
+                + "INNER JOIN tab_mascota \n"
+                + "        ON tab_mascota.ID_CLIENTE = tab_citas.CLIENTE_ID";
+
+        try {
+            con = cn.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                AgendarCita ac = new AgendarCita();
+                ac.setId(rs.getInt(1));
+                ac.setNombre(rs.getString(2));
+                ac.setApellido(rs.getString(3));
+                ac.setNombreM(rs.getString(4));
+                ac.setFecha(rs.getString(5));
+                ac.setHora(rs.getString(6));
+
+                lista.add(ac);
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return lista;
     }
 
 }

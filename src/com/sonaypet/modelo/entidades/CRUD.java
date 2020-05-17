@@ -17,6 +17,7 @@ public interface CRUD {
     public int actualizar(Object[] o);
     public void eliminar(int id);
     public List custom(int id);
+    public List custom2();
     public Object listarID(int id);
     public List buscarTodosID(int id);
 }

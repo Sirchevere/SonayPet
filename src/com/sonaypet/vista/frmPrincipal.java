@@ -55,7 +55,7 @@ int idPrincipal;
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -95,7 +95,7 @@ int idPrincipal;
 
         jMenu3.setText("Empleado");
 
-        jMenuItem9.setText("Agendar Cita");
+        jMenuItem9.setText("Agendar Citas");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -103,15 +103,15 @@ int idPrincipal;
         });
         jMenu3.add(jMenuItem9);
 
-        jMenuItem1.setText("Ver Citas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Ver Citas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(jMenuItem3);
 
-        jMenuItem2.setText("Agregar Cliente");
+        jMenuItem2.setText("Administrar Cliente");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -119,7 +119,7 @@ int idPrincipal;
         });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem7.setText("Agregar Mascota");
+        jMenuItem7.setText("Administrar Mascota");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -157,13 +157,8 @@ int idPrincipal;
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
        PrincipalInventario pi = new PrincipalInventario();
-       cargarFormulario2 ((JPanel)pi.getContentPane(),(JMenuBar)pi.getJMenuBar(),"..:: INVENTARIO ::..");
+       cargarFormulario2 ((JPanel)pi.getContentPane(),(JMenuBar)pi.getJMenuBar(),"..:: Inventario ::..");
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ListarCitas listarCitas = new ListarCitas();
-        cargarFormulario ((JPanel)listarCitas.getContentPane(), "..:: Ver Citas ::..");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ClientesVeterinaria agregarCliente = new ClientesVeterinaria();
@@ -174,6 +169,11 @@ int idPrincipal;
         ListarClientes listC = new ListarClientes();
         cargarFormulario ((JPanel)listC.getContentPane(), "..:: Agregar Mascota ::..");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       ListarCitas listC = new ListarCitas();
+        cargarFormulario ((JPanel)listC.getContentPane(), "..:: Ver Citas ::..");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,10 +186,10 @@ int idPrincipal;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables

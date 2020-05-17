@@ -195,7 +195,7 @@ public class MascotaDAO implements CRUD {
     }
     
     @Override
-    public Object listarID(int id) {
+    public Mascota listarID(int id) {
         Mascota m = new Mascota();
         String sql ="SELECT * FROM tab_mascota WHERE ID_MASCOTA=?";
         
@@ -222,6 +222,11 @@ public class MascotaDAO implements CRUD {
         
         }
         return m;
+    }
+
+    @Override
+    public List custom2() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/dao/ProductoDAO.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/entidades/ClienteVeterinaria.java</file>
+            <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/entidades/ClienteInventario.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/frmPrincipal.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/dao/VentasDAO.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/AgendarCitas.java</file>
@@ -19,11 +20,12 @@
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/dao/MascotaDAO.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/Productos.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/dao/VendedorDAO.java</file>
-            <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/Mascotas.java</file>
+            <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/Ventas.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/entidades/Mascota.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/ListarClientesCita.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/vista/ListarCitas.java</file>
             <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/entidades/AgregarMascota.java</file>
+            <file>file:/C:/Users/cesar/Documents/NetBeansProjects/cliVeterinaria/src/com/sonaypet/modelo/entidades/Venta.java</file>
         </group>
     </open-files>
 </project-private>

@@ -27,6 +27,9 @@ public class ListarClientesCita extends javax.swing.JInternalFrame {
     MascotaDAO daoM = new MascotaDAO();
     Mascota mascota = new Mascota();
     int id;
+    
+    ArrayList<Integer>idsM = new ArrayList();
+
     /**
      * Creates new form ListarClientes
      */
@@ -37,12 +40,13 @@ public class ListarClientesCita extends javax.swing.JInternalFrame {
     }
     public void buscarMascota(){
         cbxMascota.removeAllItems();
-        cbxMascota.addItem("SELECIONAR");
+        cbxMascota.addItem("SELECCIONAR");
         List<Mascota> lista = daoM.buscarTodosID(id);
         for(int i = 0; i < lista.size(); i++){
            
             nombreM.add(lista.get(i).getNombre());
             cbxMascota.addItem(nombreM.get(i));
+            idsM.add(lista.get(i).getId());
         }
         
         
@@ -173,12 +177,18 @@ public class ListarClientesCita extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbl3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AgendarCitas mascotas = new AgendarCitas(id);
+
+     
+        if(cbxMascota.getItemCount() == 1){  
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una mascota para agendar cita");
+        }
+        else{
+        AgendarCitas mascotas = new AgendarCitas(id, idsM.get(cbxMascota.getSelectedIndex()-1));
     
         cargarFormulario ((JPanel)mascotas.getContentPane(), "..:: Agendar Cita ::..");
         
         this.setVisible(false);
-         
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbxMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMascotaActionPerformed

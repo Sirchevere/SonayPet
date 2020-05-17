@@ -29,15 +29,12 @@ public class Mascotas extends javax.swing.JInternalFrame {
    
     public Mascotas() {
         initComponents();
-        /*frmPrincipal fp = new frmPrincipal();
-        idCliente = fp.getIdPrincipal();
-        txtIdCliente.setText(String.valueOf(idCliente));*/
+        
         
         int prueba = cv.getId();
-        System.out.println(id);
+       
         txtIdCliente.setText(String.valueOf(prueba));
-        System.out.println(idCliente);
-        System.out.println(cv.getId());
+        
         
         listar();
     }
