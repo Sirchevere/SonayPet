@@ -7,10 +7,8 @@ package com.sonaypet.vista;
 import javax.swing.JOptionPane;
 import com.sonaypet.modelo.dao.VendedorDAO;
 import com.sonaypet.modelo.entidades.Vendedor;
-import javax.swing.JInternalFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import com.sonaypet.vista.PrincipalInventario;
+
+
 /**
  *
  * @author cesar
@@ -124,22 +122,46 @@ public class Login extends javax.swing.JFrame {
     public void validar(){
     String dni = passInventario.getText();
     String usuario = userInventario.getText();
+    
     if(userInventario.getText().equals("") || passInventario.getText().equals("")){
         JOptionPane.showMessageDialog(this, "Debe ingresar datos en las cajas de texto");
         userInventario.requestFocus();
     } else{
     v = vdao.ValidarVendedor(dni, usuario);
     if(v.getUsuario() != null && v.getDni() != null){
-        frmPrincipal pi = new frmPrincipal();
-       pi.setVisible(true);
-       dispose();
-               
+        String acceso = v.getAcceso();
+        switch(acceso){
+            case "Empleado":{
+                JOptionPane.showMessageDialog(this, "Bienvenido "+usuario+" "+" Acceso: "+acceso);
+                frmPrincipal Principal = new frmPrincipal();
+                Principal.setTitle("Clínica SonayPet - Bienvenido "+usuario);
+                Principal.show(true);
+                Principal.setExtendedState(frmPrincipal.MAXIMIZED_BOTH);
+                frmPrincipal.menuAdministrador.enable(false);
+                this.show(false);
+                break;
+            }
+            case "Administrador":{
+                JOptionPane.showMessageDialog(this, "Bienvenido "+" "+usuario+" Acceso: "+acceso);
+                frmPrincipal Principal = new frmPrincipal();
+                Principal.setTitle("Clínica SonayPet - Bienvenido "+usuario);
+                Principal.show(true);
+                Principal.setExtendedState(frmPrincipal.MAXIMIZED_BOTH);
+                this.show(false);
+                break;
+            }
+            
+            }
+       
+            
     }else {
         JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         userInventario.requestFocus();
     }
     }
     }
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -435,6 +435,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        JOptionPane.showConfirmDialog(this, "¿Seguro que desea cancelar la venta?");
         nuevo();
     }//GEN-LAST:event_btnCancelarActionPerformed
     

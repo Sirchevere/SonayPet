@@ -32,6 +32,7 @@ public class VendedorDAO implements CRUD {
             v.setTel(rs.getString(3));
             v.setUsuario(rs.getString(4));
             v.setDni(rs.getString(5));
+            v.setAcceso(rs.getString(6));
             
             }
             
@@ -60,6 +61,7 @@ public class VendedorDAO implements CRUD {
         v.setTel(rs.getString(3));
         v.setUsuario(rs.getString(4));
         v.setDni(rs.getString(5));
+        v.setAcceso(rs.getString(6));
         lista.add(v);
         }
         
@@ -74,7 +76,7 @@ public class VendedorDAO implements CRUD {
     public int agregar(Object[] o) {
        
         int r = 0;
-       String sql = "INSERT INTO vendedor(nombre,telefono,usuario,dni)values(?,?,?,AES_ENCRYPT(?,'4E5Yv<Pz%FN&'))";
+       String sql = "INSERT INTO vendedor(nombre,telefono,usuario,dni,acceso)values(?,?,?,AES_ENCRYPT(?,'4E5Yv<Pz%FN&'),?)";
        
        try{
            con = cn.Conectar();
@@ -83,6 +85,7 @@ public class VendedorDAO implements CRUD {
            ps.setObject(2, o[1]);
            ps.setObject(3, o[2]);
            ps.setObject(4, o[3]);
+           ps.setObject(5, o[4]);
            r = ps.executeUpdate();
            
        }catch(Exception e){
@@ -96,7 +99,7 @@ public class VendedorDAO implements CRUD {
     public int actualizar(Object[] o) {
         
          int r = 0;
-        String sql = "UPDATE vendedor SET nombre=?,telefono=?,usuario=?,dni=AES_ENCRYPT(?,'4E5Yv<Pz%FN&') WHERE idVendedor=?";
+        String sql = "UPDATE vendedor SET nombre=?,telefono=?,usuario=?,dni=AES_ENCRYPT(?,'4E5Yv<Pz%FN&'),acceso=? WHERE idVendedor=?";
         
         try{
             con = cn.Conectar();
@@ -106,6 +109,7 @@ public class VendedorDAO implements CRUD {
             ps.setObject(3, o[2]);
             ps.setObject(4, o[3]);
             ps.setObject(5, o[4]);
+            ps.setObject(6, o[5]);
             r = ps.executeUpdate();
         
         }catch(Exception e){

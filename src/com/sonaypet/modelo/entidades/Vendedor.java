@@ -8,16 +8,18 @@ public class Vendedor {
     String tel;
     String usuario;
     String dni;
+    String acceso;
 
     public Vendedor() {
     }
 
-    public Vendedor(int id, String nom, String tel, String usuario, String dni, String estado) {
+    public Vendedor(int id, String nom, String tel, String usuario, String dni, String estado, String acceso) {
         this.id = id;
         this.nom = nom;
         this.tel = tel;
         this.usuario = usuario;
         this.dni = dni;
+        this.acceso = acceso;
     }
 
     public int getId() {
@@ -59,6 +61,16 @@ public class Vendedor {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    public String getAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(String acceso) {
+        this.acceso = acceso;
+    }
+    
+   
 
     
 

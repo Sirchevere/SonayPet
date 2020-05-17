@@ -201,12 +201,15 @@ public class Productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtStockActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+         if(txtNom.getText().equals("") || txtPre.getText().equals("") || txtStock.getText().equals("") ){
+        JOptionPane.showMessageDialog(this, "Debe llenar todos los datos");
+        }else{
         agregar();
         limpiarTabla();
         listar();
         nuevo();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    }
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
         limpiarTabla();
@@ -215,12 +218,17 @@ public class Productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tbl2.getSelectedRow();
+        if(fila == -1){  
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar sus datos");
+        
+        }else{
         eliminar();
         limpiarTabla();
         listar();
         nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    }
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         nuevo();
     }//GEN-LAST:event_btnNuevoActionPerformed

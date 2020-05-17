@@ -3,6 +3,7 @@ package com.sonaypet.vista;
 
 import com.sonaypet.vista.Login;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -17,6 +18,8 @@ int idPrincipal;
     public void setIdPrincipal(int idPrincipal) {
         this.idPrincipal = idPrincipal;
     }
+
+    
     
     public frmPrincipal() {
         initComponents();
@@ -60,6 +63,8 @@ int idPrincipal;
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
+        menuAdministrador = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -141,6 +146,18 @@ int idPrincipal;
 
         jMenuBar1.add(jMenu4);
 
+        menuAdministrador.setText("Administrador");
+
+        jMenuItem1.setText("Agregar empleado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuAdministrador.add(jMenuItem1);
+
+        jMenuBar1.add(menuAdministrador);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -148,7 +165,7 @@ int idPrincipal;
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         ListarClientesCita listar = new ListarClientesCita();
-        cargarFormulario ((JPanel)listar.getContentPane(), "..:: Agendar Cita ::..");
+        cargarFormulario ((JPanel)listar.getContentPane(), "..:: Lista de clientes ::..");
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -162,18 +179,23 @@ int idPrincipal;
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ClientesVeterinaria agregarCliente = new ClientesVeterinaria();
-        cargarFormulario ((JPanel)agregarCliente.getContentPane(), "..:: Agregar Cliente ::..");        
+        cargarFormulario ((JPanel)agregarCliente.getContentPane(), "..:: Administrar Clientes ::..");        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         ListarClientes listC = new ListarClientes();
-        cargarFormulario ((JPanel)listC.getContentPane(), "..:: Agregar Mascota ::..");
+        cargarFormulario ((JPanel)listC.getContentPane(), "..:: Lista de clientes ::..");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       ListarCitas listC = new ListarCitas();
-        cargarFormulario ((JPanel)listC.getContentPane(), "..:: Ver Citas ::..");
+        ListarCitas listC = new ListarCitas();
+        cargarFormulario ((JPanel)listC.getContentPane(), "..:: Lista de Citas ::..");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Vendedores vendedores = new Vendedores();
+        cargarFormulario ((JPanel)vendedores.getContentPane(),"..:: Agregar usuario de empleado ::..");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,11 +208,13 @@ int idPrincipal;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
+    public static javax.swing.JMenu menuAdministrador;
     // End of variables declaration//GEN-END:variables
 }

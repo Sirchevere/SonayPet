@@ -25,13 +25,14 @@ public class Vendedores extends javax.swing.JInternalFrame {
     void listar(){
         List<Vendedor> lista = dao.listar();
         modelo = (DefaultTableModel)tbl3.getModel();
-        Object[]ob = new Object[5];
+        Object[]ob = new Object[6];
         for(int i = 0; i < lista.size(); i++){
             ob[0] = lista.get(i).getId();
             ob[1] = lista.get(i).getNom();
             ob[2] = lista.get(i).getTel();
             ob[3] = lista.get(i).getUsuario();
             ob[4] = lista.get(i).getDni();
+            ob[5] = lista.get(i).getAcceso();
             modelo.addRow(ob);
         }
         
@@ -58,6 +59,8 @@ public class Vendedores extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cbxAcceso = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl3 = new javax.swing.JTable();
@@ -121,6 +124,10 @@ public class Vendedores extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("TIPO DE ACCESO:");
+
+        cbxAcceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Administrador", "Empleado" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,20 +138,22 @@ public class Vendedores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(txtTel)
                     .addComponent(txtUser)
-                    .addComponent(txtPass))
+                    .addComponent(txtPass)
+                    .addComponent(cbxAcceso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnActualizar)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +178,11 @@ public class Vendedores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbxAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -179,7 +192,7 @@ public class Vendedores extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "TELEFONO", "USUARIO", "CONTRASEÑA"
+                "ID", "NOMBRE", "TELEFONO", "USUARIO", "CONTRASEÑA", "ACCESO"
             }
         ));
         tbl3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,12 +248,15 @@ public class Vendedores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+         if(txtNom.getText().equals("") || txtTel.getText().equals("") || txtUser.getText().equals("") || txtPass.getText().equals("") || cbxAcceso.getSelectedItem().toString().equals("") ){
+        JOptionPane.showMessageDialog(this, "Debe llenar todos los datos");
+        }else{
         agregar();
         limpiarTabla();
         listar();
         nuevo();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    }
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
         limpiarTabla();
@@ -249,12 +265,17 @@ public class Vendedores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tbl3.getSelectedRow();
+        if(fila == -1){  
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar sus datos");
+        
+        }else{
         eliminar();
         limpiarTabla();
         listar();
         nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    }
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         nuevo();
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -270,10 +291,12 @@ public class Vendedores extends javax.swing.JInternalFrame {
             String tel = tbl3.getValueAt(fila, 2).toString();
             String usuario = tbl3.getValueAt(fila, 3).toString();
             String dni = tbl3.getValueAt(fila, 4).toString();
+            String acceso = tbl3.getValueAt(fila, 5).toString();
             txtNom.setText(nom);
             txtTel.setText(tel);
             txtUser.setText(usuario);
             txtPass.setText(dni);
+            cbxAcceso.setSelectedItem(acceso);
             
         }
     }//GEN-LAST:event_tbl3MouseClicked
@@ -284,11 +307,13 @@ public class Vendedores extends javax.swing.JInternalFrame {
         String tel = txtTel.getText();
         String usuario = txtUser.getText();
         String dni = txtPass.getText();
-        Object[] ob = new Object[4];
+        String acceso = cbxAcceso.getSelectedItem().toString();
+        Object[] ob = new Object[5];
         ob[0] = nom;
         ob[1] = tel;
         ob[2] = usuario;
         ob[3] = dni;
+        ob[4] = acceso;
         dao.agregar(ob);
     }
     
@@ -302,12 +327,14 @@ public class Vendedores extends javax.swing.JInternalFrame {
         String tel = txtTel.getText();
         String usuario = txtUser.getText();
         String dni = txtPass.getText();
-        Object[] obj = new Object[5];
+        String acceso = cbxAcceso.getSelectedItem().toString();
+        Object[] obj = new Object[6];
         obj[0]=nom;
         obj[1]=tel;
         obj[2]=usuario;
         obj[3]=dni;
-        obj[4]=id;
+        obj[4]=acceso;
+        obj[5]=id;
         dao.actualizar(obj);
         }
     }
@@ -348,10 +375,12 @@ public class Vendedores extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> cbxAcceso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

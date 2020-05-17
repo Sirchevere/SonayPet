@@ -143,12 +143,18 @@ public class ListarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbl3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int fila = tbl3.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+
+        }else{
+        
         Mascotas mascotas = new Mascotas(id);
     
-        cargarFormulario ((JPanel)mascotas.getContentPane(), "..:: Agendar Cita ::..");
+        cargarFormulario ((JPanel)mascotas.getContentPane(), "..:: Agregar Mascota ::..");
         
         this.setVisible(false);
-         
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

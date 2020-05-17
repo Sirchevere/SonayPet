@@ -51,7 +51,6 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sonaypet/imagenes/Menu (2).png"))); // NOI18N
         jMenu1.setText("Menu");
@@ -103,14 +102,6 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         });
         jMenu3.add(jMenuItem5);
 
-        jMenuItem6.setText("Vendedor");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem6);
-
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -129,11 +120,6 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        Vendedores vendedores = new Vendedores();
-        cargarFormulario ((JPanel)vendedores.getContentPane(),"..:: VENDEDORES ::..");
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -144,17 +130,17 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
        Ventas ventas = new Ventas();
-       cargarFormulario ((JPanel)ventas.getContentPane(),"..:: VENTAS ::..");
+       cargarFormulario ((JPanel)ventas.getContentPane(),"..:: Ventas ::..");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         ClientesInventario clientes = new ClientesInventario();
-        cargarFormulario ((JPanel)clientes.getContentPane(),"..:: CLIENTES ::..");
+        cargarFormulario ((JPanel)clientes.getContentPane(),"..:: Clientes Inventario ::..");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         Productos productos = new Productos();
-        cargarFormulario ((JPanel)productos.getContentPane(),"..:: PRODUCTOS ::..");
+        cargarFormulario ((JPanel)productos.getContentPane(),"..:: Productos ::..");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
@@ -171,6 +157,5 @@ public class PrincipalInventario extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
