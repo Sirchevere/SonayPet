@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2020 a las 22:38:08
+-- Tiempo de generación: 17-05-2020 a las 21:44:50
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -35,6 +35,14 @@ CREATE TABLE `cliente` (
   `direccion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`idCliente`, `dni`, `nombres`, `direccion`) VALUES
+(7, '654', 'Patricio', 'Bajo una roca'),
+(8, '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +70,15 @@ CREATE TABLE `producto` (
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `stock`) VALUES
+(9, 'asdf', 50, 50),
+(10, 'tret', 10, 11),
+(11, 'chaca', 8, 300);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +92,14 @@ CREATE TABLE `tab_citas` (
   `CITA_FECHAHR` date NOT NULL,
   `CITA_HORA` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tab_citas`
+--
+
+INSERT INTO `tab_citas` (`ID_CITAS`, `CLIENTE_ID`, `MASCOTA_ID`, `CITA_FECHAHR`, `CITA_HORA`) VALUES
+(6, 21, 9, '2020-05-27', '11:00:00'),
+(9, 21, 9, '2020-05-22', '03:30:00');
 
 -- --------------------------------------------------------
 
@@ -100,7 +125,8 @@ CREATE TABLE `tab_cliente` (
 
 INSERT INTO `tab_cliente` (`ID_CLIENTE`, `CLI_NOMBRES`, `CLI_APELLIDOS`, `CLI_FECHANAC`, `CLI_DIRECCION`, `CLI_TELEFONO`, `CLI_GENERO`, `CLI_EMAIL`, `CLI_PASS`) VALUES
 (21, 'asd', 'asd', '2020-05-13', 'asd', '1', 'F', 'a@a.com', 0x2a2a6957ba6e5964e7f5b43368c22ed4),
-(22, '', '', NULL, '', NULL, NULL, NULL, NULL);
+(22, '', '', NULL, '', NULL, NULL, NULL, NULL),
+(25, 'Cesar', 'Ramirez', '1996-04-16', 'Su casa', '2229025982', 'M', 'cesar@mail.com', 0xaa31bc9280d704c8567eed9243c28469);
 
 -- --------------------------------------------------------
 
@@ -120,6 +146,14 @@ CREATE TABLE `tab_mascota` (
   `MASC_PELAJE` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tab_mascota`
+--
+
+INSERT INTO `tab_mascota` (`ID_MASCOTA`, `ID_CLIENTE`, `MASC_NOMBRE`, `MASC_FECHANAC`, `MASC_ESPECIE`, `MASC_RAZA`, `MASC_GENERO`, `MASC_COLOR`, `MASC_PELAJE`) VALUES
+(9, 21, 'Pepito', '2020-05-12', 'Perro', 'Labrador', 'SELECCIONAR', 'Negro', 'Rizado'),
+(12, 25, 'Bayo', '2013-02-08', 'Perro', 'French', 'MACHO', 'Blanco', 'Rizado');
+
 -- --------------------------------------------------------
 
 --
@@ -131,16 +165,18 @@ CREATE TABLE `vendedor` (
   `nombre` varchar(255) NOT NULL,
   `telefono` varchar(10) NOT NULL,
   `usuario` varchar(8) NOT NULL,
-  `dni` blob NOT NULL
+  `dni` blob NOT NULL,
+  `acceso` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `vendedor`
 --
 
-INSERT INTO `vendedor` (`idVendedor`, `nombre`, `telefono`, `usuario`, `dni`) VALUES
-(1, 'Empleado 0001', '6222230071', 'emp01', 0x313233),
-(3, 'cesar', '6221578961', 'cesar', 0xaa31bc9280d704c8567eed9243c28469);
+INSERT INTO `vendedor` (`idVendedor`, `nombre`, `telefono`, `usuario`, `dni`, `acceso`) VALUES
+(3, 'cesar', '6221578961', 'cesar', 0xaa31bc9280d704c8567eed9243c28469, 'Administrador'),
+(8, 'Omar', '6224577965', 'omar', 0x7b27f9b39b3fcf47f74d87037963f8dc, 'Empleado'),
+(10, 'Empleado', '6545454', 'empleado', 0x2ff0ea9f0219b0a4b0d884d5de5fdd40, 'Empleado');
 
 -- --------------------------------------------------------
 
@@ -224,7 +260,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleventas`
@@ -236,31 +272,31 @@ ALTER TABLE `detalleventas`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_citas`
 --
 ALTER TABLE `tab_citas`
-  MODIFY `ID_CITAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_CITAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_cliente`
 --
 ALTER TABLE `tab_cliente`
-  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_mascota`
 --
 ALTER TABLE `tab_mascota`
-  MODIFY `ID_MASCOTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_MASCOTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
